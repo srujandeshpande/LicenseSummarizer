@@ -1,0 +1,17 @@
+{
+  "name": "LicenseSummarizer",
+  "version": "1.0.0",
+  "description": "Returns a markdown badge with the user's License summary",
+  "main": "index.js",
+  "repository": "https://github.com/srujandeshpande/LicenseSummarizer",
+  "author": "Srujan Deshpande <srujan.deshpande@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "node-fetch": "^2.6.1"
+  }
+}
