@@ -34,7 +34,7 @@ function LicensePage() {
 			// .then(data => parser(data))
 			setL(await parser(ll))
 		})();
-	})
+	}, [])
 	return (
 		<Canvas licenses={l} />
 	)

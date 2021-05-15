@@ -60,7 +60,7 @@ function Canvas(props) {
             w += 90
         }
 
-    });
+    }, []);
     return (
         <canvas ref={canvasRef} width={width} height={height} />
     )
