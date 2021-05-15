@@ -1,5 +1,5 @@
 {
-  "name": "LicenseSummarizer",
+  "name": "license-summarizer",
   "version": "1.0.0",
   "description": "Returns a markdown badge with the user's License summary",
   "main": "index.js",
