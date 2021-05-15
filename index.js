@@ -5,27 +5,7 @@ const { createCanvas } = require('canvas')
 const fs = require('fs')
 const path = require('path');
 
-
-async function parser(data, res) {
-    var licenses = {
-        'MIT License': 8,
-        'Mozilla Public License 2.0': 3,
-        'BSD 3-Clause "New" or "Revised" License': 1,
-        'Apache License 2.0': 1
-    };
-    var licname = "";
-    for (var i = 0; i < data.length; i++) {
-        if (data[i].license != null) {
-            licname = data[i].license.name;
-            if ((licname in licenses) == false) {
-                licenses[licname] = 1;
-            }
-            else {
-                licenses[licname]++;
-            }
-        }
-    }
-
+async function makeImg(licenses, res) {
     const width = 1200
     const height = 630
 
@@ -57,12 +37,35 @@ async function parser(data, res) {
     return;
 }
 
+async function parser(data, res) {
+    var licenses = {};
+    var licname = "";
+    for (var i = 0; i < data.length; i++) {
+        if (data[i].license != null) {
+            licname = data[i].license.name;
+            if ((licname in licenses) == false) {
+                licenses[licname] = 1;
+            }
+            else {
+                licenses[licname]++;
+            }
+        }
+    }
+    makeImg(licenses, res);
+}
+
 app.get("/", (req, res) => {
     res.send("Give usage info here. ");
 });
 
+app.get("/testing", (req, res) => {
+    var licenses = { 'MIT License': 5, 'Apache License 2.0': 7, Other: 17 }
+    makeImg(licenses, res);
+});
+
 app.get("/:username", (req, res) => {
-    console.log(req.params)
+    // 2 Hours cache browserside
+    // res.set('Cache-control', 'public, max-age=7200');
     let username = req.params.username;
     fetch(`https://api.github.com/users/${username}/repos`)
         .then(response => response.json())
