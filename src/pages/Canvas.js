@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef } from "react";
 
 function Canvas(props) {
     var licenses = props.licenses;
@@ -9,16 +9,14 @@ function Canvas(props) {
 
     useEffect(() => {
         const canvas = canvasRef.current;
-        const context = canvas.getContext('2d');
+        const context = canvas.getContext("2d");
 
-        context.fillStyle = '#000';
+        context.fillStyle = "#000";
         context.fillRect(0, 0, width, height);
 
-
-
-        context.font = 'bold 30pt Menlo'
-        context.textAlign = 'left'
-        context.textBaseline = 'top'
+        context.font = "bold 30pt Menlo";
+        context.textAlign = "left";
+        context.textBaseline = "top";
 
         var w = 180;
 
@@ -33,8 +31,7 @@ function Canvas(props) {
         function compare(a, b) {
             if (parseInt(a[0]) > parseInt(b[0])) {
                 return -1;
-            }
-            else {
+            } else {
                 return 1;
             }
         }
@@ -44,12 +41,12 @@ function Canvas(props) {
             total += l[i][0];
         }
 
-        var colors = ['#581845', '#900C3F', '#C70039', '#FF5733', '#FFC300']
+        var colors = ["#581845", "#900C3F", "#C70039", "#FF5733", "#FFC300"];
         var cstart = 60;
         for (var i = 0; i < l.length; i++) {
-            context.fillStyle = '#fff'
+            context.fillStyle = "#fff";
             context.fillText(`${l[i][1]} - ${l[i][0]}`, 150, w);
-            context.fillStyle = colors[i]
+            context.fillStyle = colors[i];
             context.fillRect(60, w - 10, 60, 60);
             // Total length = 1080
             // Start at 60
@@ -57,12 +54,10 @@ function Canvas(props) {
             // gap from left, top gap, total length, width of line
             context.fillRect(cstart, 60, len, 60);
             cstart += len;
-            w += 90
+            w += 90;
         }
-
     }, [props.licenses]);
-    return (
-        <canvas ref={canvasRef} width={width} height={height} />
-    )
+
+    return <canvas ref={canvasRef} width={width} height={height} />;
 }
-export default Canvas
+export default Canvas;
